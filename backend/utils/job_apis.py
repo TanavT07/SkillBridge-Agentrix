@@ -89,7 +89,7 @@ async def fetch_jsearch_jobs(
         - RAPIDAPI_KEY or JSEARCH_API_KEY
         - RAPIDAPI_HOST (default: jsearch.p.rapidapi.com)
     """
-    api_key = os.getenv("RAPIDAPI_KEY") or os.getenv("JSEARCH_API_KEY")
+    api_key = os.getenv("RAPID_API_KEY") or os.getenv("RAPIDAPI_KEY") or os.getenv("JSEARCH_API_KEY")
     api_host = os.getenv("RAPIDAPI_HOST", "jsearch.p.rapidapi.com")
 
     if not api_key:

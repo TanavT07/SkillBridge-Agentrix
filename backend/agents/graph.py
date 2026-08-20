@@ -4,12 +4,15 @@ import logging
 
 from langgraph.graph import StateGraph, START, END
 
+import os
+import sys
+
+# Ensure utils can be imported if graph.py is executed in different contexts
+from utils.job_apis import fetch_jsearch_jobs
 from .llm_client import call_llm
 from .schemas import (
-    MarketIntelligenceOutput,
-    SkillDeltaOutput,
-    RoadmapOutput,
-    AdaptiveEvaluatorOutput
+    RoleDemand,
+    FinalAnalysisResponse
 )
 from .prompts import (
     MIA_SYSTEM_PROMPT,
@@ -37,13 +40,20 @@ async def mia_node(state: AgentState) -> AgentState:
     logger.info("Executing MIA node")
     target_role = state.get("target_role", "Software Engineer")
     
-    user_prompt = f"Analyze the market for the following role: {target_role}"
+    # Fetch job market data (live if RAPIDAPI_KEY is present, else mock)
+    try:
+        jsearch_data = await fetch_jsearch_jobs(query=target_role)
+    except Exception as e:
+        logger.error(f"Failed to fetch JSearch data: {e}")
+        jsearch_data = {"error": str(e)}
+
+    user_prompt = f"Analyze the market for the following role: {target_role}\n\nHere is the raw market data to base your analysis on:\n{json.dumps(jsearch_data, indent=2)}"
     
     try:
         result = await call_llm(
             system_prompt=MIA_SYSTEM_PROMPT,
             user_prompt=user_prompt,
-            schema=MarketIntelligenceOutput
+            schema=RoleDemand
         )
         return {"market_data": result}
     except Exception as e:
@@ -72,8 +82,7 @@ async def spa_node(state: AgentState) -> AgentState:
     try:
         result = await call_llm(
             system_prompt=SPA_SYSTEM_PROMPT,
-            user_prompt=user_prompt,
-            schema=SkillDeltaOutput
+            user_prompt=user_prompt
         )
         return {"skill_delta": result}
     except Exception as e:
@@ -101,8 +110,7 @@ async def gsa_node(state: AgentState) -> AgentState:
     try:
         result = await call_llm(
             system_prompt=GSA_SYSTEM_PROMPT,
-            user_prompt=user_prompt,
-            schema=RoadmapOutput
+            user_prompt=user_prompt
         )
         return {"roadmap": result}
     except Exception as e:
@@ -128,7 +136,7 @@ async def aea_node(state: AgentState) -> AgentState:
         result = await call_llm(
             system_prompt=AEA_SYSTEM_PROMPT,
             user_prompt=user_prompt,
-            schema=AdaptiveEvaluatorOutput
+            schema=FinalAnalysisResponse
         )
         return {"evaluator": result}
     except Exception as e:
