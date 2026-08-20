@@ -1,0 +1,57 @@
+# ========================
+# Environment & Secrets (CRITICAL)
+# ========================
+.env
+.env*.local
+*.env
+*.pem
+*.key
+
+# ========================
+# Node / Frontend (Next.js / React)
+# ========================
+node_modules/
+.next/
+out/
+build/
+dist/
+.npm
+*.tsbuildinfo
+next-env.d.ts
+
+# ========================
+# Python / Backend (FastAPI / LangGraph)
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ========================
+# IDE & System Files
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ========================
+# Logs & Testing
+# ========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pytest_cache/
+.coverage
+htmlcov/
