@@ -1,0 +1,69 @@
+{
+  "results": [
+    {
+      "id": "adzuna-101",
+      "title": "Senior AI & Machine Learning Engineer",
+      "company": {
+        "display_name": "NexusTech AI Solutions"
+      },
+      "location": {
+        "display_name": "San Francisco, CA",
+        "area": ["US", "California", "San Francisco"]
+      },
+      "description": "We are seeking a talented Senior AI & Machine Learning Engineer to design and deploy state-of-the-art LLM agents, LangGraph workflows, and scalable RAG pipelines using Python, FastAPI, and vector databases. Requirements: 4+ years of Python experience, proficiency with PyTorch or TensorFlow, hands-on experience with OpenAI/Anthropic APIs, LangChain/LangGraph, and cloud platforms (AWS/GCP).",
+      "salary_min": 150000,
+      "salary_max": 210000,
+      "salary_is_predicted": "0",
+      "redirect_url": "https://www.adzuna.com/land/ad/adzuna-101",
+      "created": "2026-08-15T10:00:00Z",
+      "category": {
+        "label": "IT Jobs",
+        "tag": "it-jobs"
+      }
+    },
+    {
+      "id": "adzuna-102",
+      "title": "Full Stack Python & React Developer",
+      "company": {
+        "display_name": "SkillFlow Interactive"
+      },
+      "location": {
+        "display_name": "Remote, US",
+        "area": ["US", "Remote"]
+      },
+      "description": "SkillFlow is looking for a Full Stack Developer experienced with FastAPI, Next.js/React, TypeScript, and Supabase / PostgreSQL. You will be building responsive user interfaces, creating robust backend endpoints, and integrating LLM-powered skills verification features. Requirements: 3+ years full-stack web development, solid Python & TypeScript skills, experience with modern CSS and state management.",
+      "salary_min": 125000,
+      "salary_max": 165000,
+      "salary_is_predicted": "0",
+      "redirect_url": "https://www.adzuna.com/land/ad/adzuna-102",
+      "created": "2026-08-18T14:30:00Z",
+      "category": {
+        "label": "IT Jobs",
+        "tag": "it-jobs"
+      }
+    },
+    {
+      "id": "adzuna-103",
+      "title": "Data Platform & MLOps Engineer",
+      "company": {
+        "display_name": "DataScale Systems"
+      },
+      "location": {
+        "display_name": "New York, NY",
+        "area": ["US", "New York", "New York City"]
+      },
+      "description": "Looking for a seasoned MLOps Engineer to maintain end-to-end data ingestion pipelines, Docker containerized services, and CI/CD pipelines for autonomous agents. Qualifications: Strong Python skills, Kubernetes, Docker, MLflow, Airflow, and experience orchestrating model evaluation pipelines.",
+      "salary_min": 140000,
+      "salary_max": 190000,
+      "salary_is_predicted": "0",
+      "redirect_url": "https://www.adzuna.com/land/ad/adzuna-103",
+      "created": "2026-08-19T09:15:00Z",
+      "category": {
+        "label": "IT Jobs",
+        "tag": "it-jobs"
+      }
+    }
+  ],
+  "count": 3,
+  "mean_salary": 163333.33
+}

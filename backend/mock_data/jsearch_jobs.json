@@ -1,0 +1,68 @@
+{
+  "status": "OK",
+  "request_id": "jsearch-req-mock-7890",
+  "data": [
+    {
+      "job_id": "jsearch-201",
+      "employer_name": "Cognitive Cloud Labs",
+      "employer_logo": "https://via.placeholder.com/150",
+      "employer_website": "https://cognitivecloud.example.com",
+      "job_employment_type": "FULLTIME",
+      "job_title": "AI Backend Software Engineer",
+      "job_apply_link": "https://cognitivecloud.example.com/careers/ai-backend",
+      "job_description": "Cognitive Cloud Labs is hiring an AI Backend Software Engineer to develop AI-driven applications and services. Key Responsibilities: Develop REST APIs with FastAPI and Python 3.11, build multi-agent graph workflows using LangGraph and LangChain, implement vector search and retrieval mechanisms, and integrate secure authentication with Supabase / PostgreSQL. Requirements: Proficient in Python, familiar with asynchronous programming (asyncio, httpx), experience with PyPDF2/pypdf or document processing pipelines, and solid foundation in cloud infrastructure.",
+      "job_is_remote": true,
+      "job_city": "Austin",
+      "job_state": "TX",
+      "job_country": "US",
+      "job_min_salary": 135000,
+      "job_max_salary": 185000,
+      "job_salary_currency": "USD",
+      "job_salary_period": "YEAR",
+      "job_highlights": {
+        "Qualifications": [
+          "Bachelor's or Master's in Computer Science or related field",
+          "3+ years of experience with Python (FastAPI / Pydantic / AsyncIO)",
+          "Experience with LangGraph, LangChain, or LLM agent architectures",
+          "Familiarity with Supabase, PostgreSQL, and vector databases"
+        ],
+        "Responsibilities": [
+          "Design, implement, and maintain FastAPI microservices",
+          "Build document parsing, resume analysis, and job matching pipelines",
+          "Collaborate with frontend engineers on Next.js UI integration"
+        ]
+      }
+    },
+    {
+      "job_id": "jsearch-202",
+      "employer_name": "Vertex NextGen Systems",
+      "employer_logo": "https://via.placeholder.com/150",
+      "employer_website": "https://vertexnextgen.example.com",
+      "job_employment_type": "FULLTIME",
+      "job_title": "Lead Python Engineer - Agentic Systems",
+      "job_apply_link": "https://vertexnextgen.example.com/jobs/lead-python-agentic",
+      "job_description": "We are seeking a Lead Python Engineer to spearhead our Agentic AI product suite. You will work on cutting-edge autonomous agents for skill verification and learning pathway generation. You will architect high-concurrency async endpoints, integrate external job market feeds (Adzuna, JSearch), and extract structured insights from unstructured PDFs and resumes.",
+      "job_is_remote": false,
+      "job_city": "Seattle",
+      "job_state": "WA",
+      "job_country": "US",
+      "job_min_salary": 160000,
+      "job_max_salary": 220000,
+      "job_salary_currency": "USD",
+      "job_salary_period": "YEAR",
+      "job_highlights": {
+        "Qualifications": [
+          "5+ years backend engineering in Python",
+          "Expertise in asynchronous programming (httpx, asyncio, FastAPI)",
+          "Demonstrated experience building Agent workflows (LangGraph)",
+          "Strong data parsing capabilities (PDF, Docx, JSON)"
+        ],
+        "Responsibilities": [
+          "Lead technical architecture of AI agent pipelines",
+          "Ensure high test coverage and fault-tolerant fallback mechanisms",
+          "Mentor junior and mid-level software engineers"
+        ]
+      }
+    }
+  ]
+}
