@@ -3,8 +3,11 @@ import logging
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, status, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
+
+from utils.pdf_parser import extract_text_from_pdf
+from agents.graph import app as workflow_app
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -102,6 +105,62 @@ async def get_mock_jobs():
         "data": combined_data,
         "warnings": errors if errors else None,
     }
+
+
+@app.post("/api/analyze")
+async def analyze_resume(
+    file: UploadFile = File(...),
+    target_role: str = Form("Software Engineer")
+):
+    """
+    Accepts a PDF resume and a target role.
+    Extracts text from the PDF and runs it through the LangGraph workflow.
+    """
+    if file.content_type != "application/pdf":
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Only PDF files are supported."
+        )
+
+    try:
+        # Read file content
+        content = await file.read()
+        
+        # Extract text using pdf_parser
+        resume_text = extract_text_from_pdf(content)
+        
+        # Define initial state for LangGraph
+        initial_state = {
+            "resume_text": resume_text,
+            "target_role": target_role
+        }
+        
+        # Execute workflow
+        logger.info(f"Starting workflow for role: {target_role}")
+        final_state = await workflow_app.ainvoke(initial_state)
+        
+        # Check for errors in state
+        if final_state.get("error"):
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=final_state["error"]
+            )
+            
+        # Return structured agent outputs
+        return {
+            "status": "success",
+            "market_data": final_state.get("market_data"),
+            "skill_delta": final_state.get("skill_delta"),
+            "roadmap": final_state.get("roadmap"),
+            "evaluator": final_state.get("evaluator"),
+        }
+
+    except Exception as e:
+        logger.error(f"Workflow failed: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"An error occurred during analysis: {str(e)}"
+        )
 
 
 if __name__ == "__main__":
