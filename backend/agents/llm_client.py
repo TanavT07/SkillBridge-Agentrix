@@ -4,19 +4,26 @@ import os
 from typing import Any, Dict, Optional, Type
 from pydantic import BaseModel
 from openai import AsyncOpenAI
+from dotenv import load_dotenv  # Add this import
+
+# Tell Python to load the secrets from the .env file
+load_dotenv()
 
 logger = logging.getLogger("skillbridge.agents.llm_client")
 
-# Initialize OpenAI async client
-# Requires OPENAI_API_KEY set in environment or .env
-_api_key = os.getenv("OPENAI_API_KEY", "dummy_key_to_allow_import")
-client = AsyncOpenAI(api_key=_api_key)
+# Initialize OpenAI async client to use Gemini via compatibility bridge
+# Requires GEMINI_API_KEY set in environment or .env
+_api_key = os.getenv("GEMINI_API_KEY", "dummy_key_to_allow_import")
+client = AsyncOpenAI(
+    api_key=_api_key,
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
 
 async def call_llm(
     system_prompt: str,
     user_prompt: str,
     schema: Optional[Type[BaseModel]] = None,
-    model: str = "gpt-4o-mini",
+    model: str = "gemini-3.6-flash",
     temperature: float = 0.2,
 ) -> Dict[str, Any]:
     """
@@ -26,7 +33,7 @@ async def call_llm(
         system_prompt: Instructions for the LLM.
         user_prompt: The input data or task description.
         schema: Optional Pydantic model to validate the JSON response against.
-        model: Model name to use (defaults to gpt-4o-mini).
+        model: Model name to use (defaults to gemini-2.5-flash).
         temperature: Controls randomness (lower is more deterministic).
         
     Returns:

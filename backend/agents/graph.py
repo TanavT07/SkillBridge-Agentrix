@@ -43,8 +43,7 @@ async def mia_node(state: AgentState) -> AgentState:
         result = await call_llm(
             system_prompt=MIA_SYSTEM_PROMPT,
             user_prompt=user_prompt,
-            schema=MarketIntelligenceOutput,
-            model="gpt-4o-mini"
+            schema=MarketIntelligenceOutput
         )
         return {"market_data": result}
     except Exception as e:
@@ -74,8 +73,7 @@ async def spa_node(state: AgentState) -> AgentState:
         result = await call_llm(
             system_prompt=SPA_SYSTEM_PROMPT,
             user_prompt=user_prompt,
-            schema=SkillDeltaOutput,
-            model="gpt-4o-mini"
+            schema=SkillDeltaOutput
         )
         return {"skill_delta": result}
     except Exception as e:
@@ -104,8 +102,7 @@ async def gsa_node(state: AgentState) -> AgentState:
         result = await call_llm(
             system_prompt=GSA_SYSTEM_PROMPT,
             user_prompt=user_prompt,
-            schema=RoadmapOutput,
-            model="gpt-4o-mini"
+            schema=RoadmapOutput
         )
         return {"roadmap": result}
     except Exception as e:
@@ -131,8 +128,7 @@ async def aea_node(state: AgentState) -> AgentState:
         result = await call_llm(
             system_prompt=AEA_SYSTEM_PROMPT,
             user_prompt=user_prompt,
-            schema=AdaptiveEvaluatorOutput,
-            model="gpt-4o-mini"
+            schema=AdaptiveEvaluatorOutput
         )
         return {"evaluator": result}
     except Exception as e:
